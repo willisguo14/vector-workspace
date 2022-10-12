@@ -5,8 +5,9 @@ def main():
     with open(data_splits_f, "r") as f:
         lines = f.read().splitlines()
 
-        img_id, split = lines.split()
-        print(f"{img_id} // {split}")
+        for line in lines:
+            img_id, split = lines.split()
+            print(f"{img_id} // {split}")
 
     pass 
 
