@@ -6,7 +6,7 @@ def main():
         lines = f.read().splitlines()
 
         for line in lines:
-            img_id, split = lines.split()
+            img_id, split = line.split()
             print(f"{img_id} // {split}")
 
     pass 
