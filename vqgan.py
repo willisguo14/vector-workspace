@@ -4,7 +4,7 @@ def write_data(f_path, img_ids):
 
     n = len(img_ids)
 
-    img_path = "PATH_TO_IMAGES"
+    img_path = "/scratch/ssd002/datasets/celeba/Img/img_align_celeba"
 
     with open(f_path, "w") as f:
 
