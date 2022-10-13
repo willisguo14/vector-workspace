@@ -1,5 +1,8 @@
 import os
 
+from PIL import Image
+import numpy as np 
+
 def write_data(f_path, img_ids):
 
     n = len(img_ids)
@@ -13,6 +16,15 @@ def write_data(f_path, img_ids):
                 f.write(f"{os.path.join(img_path, img_id)}\n")
             else:
                 f.write(f"{os.path.join(img_path, img_id)}")   
+
+def preprocess_image(image_path):
+    image = Image.open(image_path)
+    if not image.mode == "RGB":
+        image = image.convert("RGB")
+    image = np.array(image).astype(np.uint8)
+    # image = preprocessor(image=image)["image"]
+    image = (image/127.5 - 1.0).astype(np.float32)
+    return image
 
 def main():
 
@@ -42,6 +54,12 @@ def main():
     write_data(train_f, train_img_ids)
     write_data(val_f, val_img_ids)
     write_data(test_f, test_img_ids)
+
+    ### 
+
+    img = preprocess_image("/scratch/ssd002/datasets/celeba/Img/img_align_celeba/000001.jpg")
+    print(img.shape)
+    print(img)
 
 
     # TODO: 
