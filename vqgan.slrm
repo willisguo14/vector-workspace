@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#SBATCH --job-name=willis-vqgan
+
+#SBATCH --output=/h/gnosisyu/willis/output-%N-%j.out    # LINES 4, 5 - NOTE: for output and error, use absolute paths that exists already
+#SBATCH --error=/h/gnosisyu/willis/error-%N-%j.err      # LINES 4, 5 - NOTE: %N and %j will be replaced by the host name and job id, respectively
+#SBATCH --open-mode=append
+
+#SBATCH --partition=rtx6000                              # self-explanatory, set to your preference (e.g. gpu or cpu on MaRS, p100, t4, or cpu on Vaughan)
+#SBATCH --gres=gpu:2                                 # NOTE: you need a GPU for CUDA support; self-explanatory, set to your preference 
+
+#SBATCH --cpus-per-task=1   
+#SBATCH --mem=20G                                     # self-explanatory, set to your preference
+
+#SBATCH --ntasks=1
+#SBATCH --nodes=1                                    # self-explanatory, set to your preference
+#SBATCH --ntasks-per-node=1
+
+#SBATCH --qos=normal                                 # for "high" and "deadline" QoS, refer to https://support.vectorinstitute.ai/AboutVaughan2
+
+#SBATCH --time=1:00:00
+ 
+export PATH=/pkgs/anaconda3/bin:$PATH
+source activate /h/gnosisyu/willis/vqgan-env
+
+python /h/gnosisyu/willis/taming-transformers/main.py
+
+source deactivate 
