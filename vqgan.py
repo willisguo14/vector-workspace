@@ -17,6 +17,7 @@ def write_data(f_path, img_ids):
             else:
                 f.write(f"{os.path.join(img_path, img_id)}")   
 
+# test preprocess_image() in taming/data/base.py
 def preprocess_image(image_path):
     image = Image.open(image_path)
     if not image.mode == "RGB":
@@ -57,15 +58,9 @@ def main():
 
     ### 
 
-    img = preprocess_image("/scratch/ssd002/datasets/celeba/Img/img_align_celeba/000001.jpg")
-    print(img.shape)
-    print(img)
-
-
-    # TODO: 
-    # - write train.txt, val.txt, test.txt (w/ full path to images)
-    # - test that preprocess_image() 
-    # - test dataset? 
+    # img = preprocess_image("/scratch/ssd002/datasets/celeba/Img/img_align_celeba/000001.jpg")
+    # print(img.shape)
+    # print(img)
 
 if __name__ == "__main__":
     main()
