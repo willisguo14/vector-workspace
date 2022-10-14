@@ -19,6 +19,6 @@
 export PATH=/pkgs/anaconda3/bin:$PATH
 source activate /h/gnosisyu/willis/vqgan-env
 
-python /h/gnosisyu/willis/taming-transformers/main.py --base /h/gnosisyu/willis/taming-transformers/configs/custom_vqgan.yaml -t True --gpus 0,1, 2, 3
+python /h/gnosisyu/willis/taming-transformers/main.py --base /h/gnosisyu/willis/taming-transformers/configs/custom_vqgan.yaml -t True --gpus 0,1,2,3
 
 source deactivate 
