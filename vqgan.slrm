@@ -7,18 +7,18 @@
 #SBATCH --open-mode=append
 
 #SBATCH --partition=rtx6000                              
-#SBATCH --gres=gpu:2                                 
+#SBATCH --gres=gpu:4                               
 
 #SBATCH --cpus-per-task=1   
-#SBATCH --mem=10G                                     
+#SBATCH --mem=40G                                     
 
 #SBATCH --qos=normal                                
 
-#SBATCH --time=1:00:00
+#SBATCH --time=2-0:00:00
  
 export PATH=/pkgs/anaconda3/bin:$PATH
 source activate /h/gnosisyu/willis/vqgan-env
 
-python /h/gnosisyu/willis/taming-transformers/main.py --base /h/gnosisyu/willis/taming-transformers/configs/custom_vqgan.yaml -t True --gpus 0,1
+python /h/gnosisyu/willis/taming-transformers/main.py --base /h/gnosisyu/willis/taming-transformers/configs/custom_vqgan.yaml -t True --gpus 0,1, 2, 3
 
 source deactivate 
