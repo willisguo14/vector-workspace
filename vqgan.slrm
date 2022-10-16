@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=willis-vqgan
 
-#SBATCH --output=/h/gnosisyu/willis/output-%N-%j.out    
-#SBATCH --error=/h/gnosisyu/willis/error-%N-%j.err      
+#SBATCH --output=/h/gnosisyu/willis/slurm-outputs/output-%j-%N.out    
+#SBATCH --error=/h/gnosisyu/willis/slurm-outputs/error-%j-%N.err      
 #SBATCH --open-mode=append
 
 #SBATCH --partition=rtx6000                              
@@ -18,6 +18,8 @@
  
 export PATH=/pkgs/anaconda3/bin:$PATH
 source activate /h/gnosisyu/willis/vqgan-env
+
+wandb login f39dd012ef6a442e343f968d0f45a9569cd42c2e
 
 python /h/gnosisyu/willis/taming-transformers/main.py --base /h/gnosisyu/willis/taming-transformers/configs/custom_vqgan.yaml -t True --gpus 0,1,2,3
 
